@@ -2,13 +2,7 @@
 # Install dependencies using Poetry
 current_dir=$(pwd)
 echo "Installing Dependencies"
-if [ ! -d "$HOME/venv" ]; then
-    echo "Creating Virtual environment in HOME directory"
-    cd "$HOME"
-    python -m venv venv;
-fi
-source "$HOME/venv/bin/activate"
-pip install -r "$current_dir/requirements.txt"
+pip install -r "$current_dir/requirements.txt" --break-system-packages
 
 # Check if .zshrc exists
 echo "trying to add alias for easier access"
