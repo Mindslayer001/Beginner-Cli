@@ -50,6 +50,7 @@ $$$$$$$/   $$$$$$$/  $$$$$$$ |$$/ $$/   $$/ $$/   $$/  $$$$$$$/ $$/             
                     $$    $$/                                                                              
                      $$$$$$/                                                                               
 """)
+    print("Author: github.com/Mindslayer001")
     try:
         data = json.loads(json_data)
         parser_function(data, query)
