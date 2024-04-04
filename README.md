@@ -40,10 +40,11 @@ To install the Beginner CLI Tool, follow these steps:
     cd Beginner-Cli
     ```
 
-3. Install dependencies using Poetry:
+3. Run the Setup.sh:
 
     ```bash
-    poetry install
+    chmod +x setup_alias.sh
+    ./setup_alias.sh
     ```
 
 ## Usage
@@ -104,4 +105,4 @@ Contributions to the Beginner CLI Tool are welcomed! If you'd like to contribute
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-The project utilizes the Gemini API provided by [GenAI](https://genai.ai/) under their free tier. Please refer to the [GenAI Terms of Service](https://genai.ai/terms) for more information about the usage of their services.
+The project utilizes the Gemini API provided by [GenAI](https://ai.google.dev) under their free tier. Please refer to the [GenAI Terms of Service](https://ai.google.dev/docs) for more information about the usage of their services.
