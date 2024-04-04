@@ -43,8 +43,8 @@ To install the Beginner CLI Tool, follow these steps:
 3. Run the Setup.sh:
 
     ```bash
-    chmod +x setup_alias.sh
-    ./setup_alias.sh
+    chmod +x setup.sh
+    ./setup.sh
     ```
 
 ## Usage
