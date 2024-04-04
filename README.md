@@ -3,7 +3,7 @@
 
 ## Description
 
-The Beginner CLI Tool is a Python-based command-line interface designed to assist beginners in learning and executing Linux commands interactively. It provides features such as command explanations and scenario-based command suggestions.
+The Beginner CLI Tool is a Python-based command-line interface designed to assist newcomers in learning and executing Linux commands interactively. It provides features such as command explanations and scenario-based command suggestions.
 
 ## Project Structure
 
@@ -34,7 +34,7 @@ To install the Beginner CLI Tool, follow these steps:
     git clone https://github.com/Mindslayer001/Beginner-Cli.git
     ```
 
-2. Navigate into the project directory:
+2. Navigate to the project directory:
 
     ```bash
     cd Beginner-Cli
@@ -76,9 +76,9 @@ To use the Beginner CLI Tool, you have several options:
 
 To enable access to the Gemini API, you'll need to obtain an API key. Follow these steps to get your API key:
 
-1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey).
-2. Obtain your brand new API key. The free tier is available with a few limitations.
-3. Once you have your API key, replace the placeholder `YOUR_API_KEY` in the `config.ini` file located in the `beg_cli` directory with your actual API key.
+1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey).
+2. Obtain your API key. The free tier is available with certain limitations.
+3. Once obtained, replace the placeholder `YOUR_API_KEY` in the `config.ini` file located in the `beg_cli` directory with your actual API key.
 
 ```
 [GENAI]
@@ -87,9 +87,11 @@ api_key = YOUR_API_KEY
 
 With your API key configured, you'll be able to use the Beginner CLI Tool with access to the Gemini API.
 
+Alternatively, you can input your API key directly into the CLI tool, and it will configure it automatically.
+
 ## Contributing
 
-Contributions to the Beginner CLI Tool are welcome! If you'd like to contribute, please follow these steps:
+Contributions to the Beginner CLI Tool are welcomed! If you'd like to contribute, please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature/your_feature`).
@@ -102,4 +104,4 @@ Contributions to the Beginner CLI Tool are welcome! If you'd like to contribute,
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
-This project utilizes the Gemini API provided by [GenAI](https://genai.ai/) under their free tier. Please refer to the [GenAI Terms of Service](https://genai.ai/terms) for more information about the usage of their services.
+The project utilizes the Gemini API provided by [GenAI](https://genai.ai/) under their free tier. Please refer to the [GenAI Terms of Service](https://genai.ai/terms) for more information about the usage of their services.
