@@ -71,7 +71,7 @@ To use the Beginner CLI Tool, you have several options:
     Example:
    
     ```bash
-    poetry run python beg_cli/argsparser.py --scenario
+    poetry run python beg_cli/argsparser.py --scenario "I want to rename a file"
     ```
 
 To enable access to the Gemini API, you'll need to obtain an API key. Follow these steps to get your API key:
