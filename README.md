@@ -54,32 +54,32 @@ To use the Beginner CLI Tool, you have several options:
 1. **Command Explainer**: Provide basic information and examples of a specific Linux command.
    
     ```bash
-    poetry run python beg_cli/argsparser.py --info [COMMAND]
+    begcli -i [COMMAND]
     ```
    
     Example:
    
     ```bash
-    poetry run python beg_cli/argsparser.py --info mkdir
+    begcli -i mkdir
     ```
 
 2. **Scenario-based Command Suggestion**: Suggests commands based on a user scenario.
    
     ```bash
-    poetry run python beg_cli/argsparser.py --scenario
+    begcli -s [User Query]
     ```
    
     Example:
    
     ```bash
-    poetry run python beg_cli/argsparser.py --scenario "I want to rename a file"
+    begcli -s "I want to rename a file"
     ```
 
 To enable access to the Gemini API, you'll need to obtain an API key. Follow these steps to get your API key:
 
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey).
 2. Obtain your API key. The free tier is available with certain limitations.
-3. Once obtained, replace the placeholder `YOUR_API_KEY` in the `config.ini` file located in the `beg_cli` directory with your actual API key.
+3. Once obtained, Create config.ini file in home directory and paste the below commnad ny replacing the placeholder `YOUR_API_KEY` with your actual API key.
 
 ```
 [GENAI]
