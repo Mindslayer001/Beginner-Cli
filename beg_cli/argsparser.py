@@ -50,7 +50,7 @@ $$$$$$$/   $$$$$$$/  $$$$$$$ |$$/ $$/   $$/ $$/   $$/  $$$$$$$/ $$/             
                     $$    $$/                                                                              
                      $$$$$$/                                                                               
 """)
-    print("Author: github.com/Mindslayer001")
+    print("Author: https://github.com/Mindslayer001")
     try:
         data = json.loads(json_data)
         parser_function(data, query)
@@ -139,9 +139,8 @@ def main(
         ]
         }
         """
-        modified_prompt = f"{format_} use the above format to give me {query}"
+        modified_prompt = f"{format_} use the above format to give me explaination to this linux command {query} and make it easier to understand for first linux users and give me smaller description"
         response = model.generate_content([modified_prompt])
-        print(f"This beginner guide to use {query} command in Linux.\n")
         response = response.text
         response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
         parse_json(response, info_parser, query)
