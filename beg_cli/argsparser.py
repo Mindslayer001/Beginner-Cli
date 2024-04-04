@@ -91,7 +91,7 @@ def scenario_parser(data, query):
         # Access commands
         table_data = []
         for command in data["commands"]:
-            table_data.append([f"Command: {command['command']}", f"Description: {command['description']}"])
+            table_data.append([command['command'], command['description']])
 
         print(tabulate(table_data, headers=["Parameter", "Description"], tablefmt="grid"))
     except KeyError:
