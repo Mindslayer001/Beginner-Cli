@@ -9,10 +9,12 @@ echo "Trying to add alias for easier access"
 if [ -f "$HOME/.zshrc" ]; then
     # If .zshrc exists, add the alias to .zshrc
     echo "alias begcli='python \"$current_dir/beg_cli/argsparser.py\"'" >> "$HOME/.zshrc"
+    $(source $HOME/.zshrc)
     echo "Alias added to .zshrc"
 else
     # If .zshrc doesn't exist, add the alias to .bashrc
     echo "alias begcli='python \"$current_dir/beg_cli/argsparser.py\"'" >> "$HOME/.bashrc"
+    $(source $HOME/.bashrc)
     echo "Alias added to .bashrc"
 fi
 
