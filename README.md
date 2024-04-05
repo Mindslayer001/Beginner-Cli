@@ -65,7 +65,9 @@ To use the Beginner CLI Tool, you have several options:
     begcli -i mkdir
     ```
     
-    ![Alt text](Assests/command.gif "Command-line demo")
+    <div class="zoom">
+        ![Command-line demo](Assests/command.gif "Command-line demo")
+    </div>
 
 2. **Scenario-based Command Suggestion**: Suggests commands based on a user scenario.
    
@@ -78,7 +80,26 @@ To use the Beginner CLI Tool, you have several options:
     ```bash
     begcli -s "I want to rename a file"
     ```
-    ![Alt text](Assests/scenario.gif "Scenario-based demo")
+
+    <div class="zoom">
+        ![Scenario-based demo](Assests/scenario.gif "Scenario-based demo")
+    </div>
+
+...
+
+<style>
+.zoom {
+    overflow: hidden;
+}
+
+.zoom img {
+    transition: transform 0.5s;
+}
+
+.zoom:hover img {
+    transform: scale(1.5); /* Adjust the scale factor as needed */
+}
+</style>
 
 To enable access to the Gemini API, you'll need to obtain an API key. Follow these steps to get your API key:
 
