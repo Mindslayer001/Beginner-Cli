@@ -101,6 +101,7 @@ To use the Beginner CLI Tool, you have several options:
 }
 </style>
 
+
 To enable access to the Gemini API, you'll need to obtain an API key. Follow these steps to get your API key:
 
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey).
