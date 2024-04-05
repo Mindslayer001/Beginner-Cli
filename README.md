@@ -64,6 +64,7 @@ To use the Beginner CLI Tool, you have several options:
     ```bash
     begcli -i mkdir
     ```
+    
     ![Alt text](Assests/commmand-line-demo.gif "Command-line demo")
 
 2. **Scenario-based Command Suggestion**: Suggests commands based on a user scenario.
