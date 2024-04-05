@@ -53,8 +53,7 @@ To install the Beginner CLI Tool, follow these steps:
     To gain access to the Gemini API, you'll need to acquire an API key. Follow these steps to obtain your API key:
     1. Navigate to Google AI Studio.
     2. Obtain your API key. Please note that the free tier is available with specific limitations.
-    3. If you use begcli for the first time it will ask for API key
-    4. Input your API key directly into the CLI tool, and it will configure it automatically.
+    3. Input your API key directly into the CLI tool, and it will configure it automatically.
 
 ## Usage
 
