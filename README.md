@@ -48,13 +48,12 @@ To install the Beginner CLI Tool, follow these steps:
     chmod +x setup.sh
     ./setup.sh
     ```
-4. Obtain Gemini API Key
-
-To gain access to the Gemini API, you'll need to acquire an API key. Follow these steps to obtain your API key:
-
-1. Navigate to Google AI Studio.
-2. Obtain your API key. Please note that the free tier is available with specific limitations.
-3. Input your API key directly into the CLI tool, and it will configure it automatically.
+4. Obtain Gemini API Key:
+   
+    To gain access to the Gemini API, you'll need to acquire an API key. Follow these steps to obtain your API key:
+    1. Navigate to Google AI Studio.
+    2. Obtain your API key. Please note that the free tier is available with specific limitations.
+    3. Input your API key directly into the CLI tool, and it will configure it automatically.
 
 ## Usage
 
