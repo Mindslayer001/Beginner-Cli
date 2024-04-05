@@ -64,10 +64,10 @@ To use the Beginner CLI Tool, you have several options:
     ```bash
     begcli -i mkdir
     ```
-    
+    ![command-line image](Assests/command.png "command-line image")
     ![Command-line demo](Assests/command.gif "Command-line demo")
 
-2. **Scenario-based Command Suggestion**: Suggests commands based on a user scenario.
+3. **Scenario-based Command Suggestion**: Suggests commands based on a user scenario.
    
     ```bash
     begcli -s [User Query]
@@ -78,7 +78,7 @@ To use the Beginner CLI Tool, you have several options:
     ```bash
     begcli -s "I want to rename a file"
     ```
-
+    ![scenario-based image](Assests/scenario.png "scenario-based image")
     ![Scenario-based demo](Assests/scenario.gif "Scenario-based demo")
 
 
