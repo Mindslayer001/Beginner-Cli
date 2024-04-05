@@ -139,7 +139,8 @@ def main(
         ]
         }
         """
-        modified_prompt = f"{format_} strictly use the above json format to give me explaination to this linux command {query} in json"
+       	modified_prompt = f"{format_} strictly adhere to the given JSON format above and provide example to the command: '{query}' in JSON format."
+
         response = model.generate_content([modified_prompt])
         response = response.text
         response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
@@ -168,7 +169,7 @@ def main(
         ]
         }
         """
-        modified_prompt = f"{format_} use the above json format to give me {query}"
+        modified_prompt = f"{format_} strictly adhere to the given JSON format above and provide Linux commands to accomplish the action described in the scenario: '{query}' in JSON format."
         response = model.generate_content([modified_prompt])
         response = response.text
         response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
