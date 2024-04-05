@@ -1,5 +1,7 @@
 
 # Beginner CLI Tool
+![Alt text](Assests/newBegcli.png "Optional title")
+
 
 ## Description
 
