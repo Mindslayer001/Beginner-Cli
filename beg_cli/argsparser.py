@@ -1,42 +1,11 @@
 import json
-import google.generativeai as genai
 import os
 import configparser
 import typer
 from tabulate import tabulate
-
-# Define the configuration file path
-CONFIG_FILE = 'config.ini'
-
-# Load or create the configuration file
-config = configparser.ConfigParser()
-
-# If the configuration file exists, load it
-if os.path.exists(CONFIG_FILE):
-    config.read(CONFIG_FILE)
-
-# If the configuration file doesn't exist or doesn't contain the API key, prompt the user to enter it
-if 'GENAI' not in config or 'api_key' not in config['GENAI']:
-    api_key = input("Enter your GenAI API key: ")
-    config['GENAI'] = {'api_key': api_key}
-
-    # Write the API key to the configuration file
-    with open(CONFIG_FILE, 'w') as configfile:
-        config.write(configfile)
-else:
-    # Get the API key from the configuration file
-    api_key = config['GENAI']['api_key']
-
-genai.configure(api_key=api_key) 
-model = genai.GenerativeModel('gemini-pro')
-
-app = typer.Typer()
-
-# Error message format
-ERROR_MESSAGE = "The command you provided does not appear to be a Linux command. Please check for spelling mistakes or provide a valid Linux command."
-
-def parse_json(json_data, parser_function, query):
-    print("""
+from google.api_core.exceptions import InvalidArgument
+import google.generativeai as genai
+print("""
  _______                       __                                                 ______   __       ______ 
 /       \                     /  |                                               /      \ /  |     /      |
 $$$$$$$  |  ______    ______  $$/  _______   _______    ______    ______        /$$$$$$  |$$ |     $$$$$$/ 
@@ -50,12 +19,24 @@ $$$$$$$/   $$$$$$$/  $$$$$$$ |$$/ $$/   $$/ $$/   $$/  $$$$$$$/ $$/             
                     $$    $$/                                                                              
                      $$$$$$/                                                                               
 """)
-    print("Author: https://github.com/Mindslayer001")
+print("Author: https://github.com/Mindslayer001")
+# Define the configuration file path
+CONFIG_FILE = 'config.ini'
+
+# Load or create the configuration file
+config = configparser.ConfigParser()
+
+# If the configuration file exists, load it
+if os.path.exists(CONFIG_FILE):
+    config.read(CONFIG_FILE)
+
+def parse_json(json_data, parser_function, query):
     try:
         data = json.loads(json_data)
         parser_function(data, query)
     except Exception as e:
         print(f"An error occurred while parsing JSON data: {e}")
+
 
 def info_parser(data, query):
     try:
@@ -97,17 +78,42 @@ def scenario_parser(data, query):
     except KeyError:
         print(ERROR_MESSAGE)
 
+def get_api_key():
+    """
+    Prompt the user to enter the GenAI API key and write it to the configuration file.
+    """
+    api_key = input("Enter your GenAI API key: ")
+    config['GENAI'] = {'api_key': api_key}
+
+    # Write the API key to the configuration file
+    with open(CONFIG_FILE, 'w') as configfile:
+        config.write(configfile)
+
+def configure_genai():
+    """
+    Configure the GenAI API with the API key.
+    """
+    try:
+        api_key = config['GENAI']['api_key']
+        genai.configure(api_key=api_key)
+    except KeyError:
+        print("GenAI API key not found.")
+        get_api_key()
+app = typer.Typer()
 @app.command()
 def main(
     query: str = typer.Argument(None, help="Enter the text"),
     info: bool = typer.Option(False, "--info", "-i", help="Provide basic info and examples of the given command"),
     scenario: bool = typer.Option(False, "--scenario", "-s", help="Suggest commands based on the user scenario"),
 ):
-    if query is None:
-        query = typer.prompt("Enter the text")
-
+    """
+    Main function to handle user inputs and generate responses.
+    """
+    configure_genai()
+    
     if info:
-        format_ = """json{
+        format_ = """
+        json{
         "mkdir": [{
             "syntax": "mkdir [options] directory_name...",
             "description": "Creates one or more directories (folders). If the directory already exists, an error message will be printed.",
@@ -139,12 +145,14 @@ def main(
         ]
         }
         """
-       	modified_prompt = f"{format_} strictly adhere to the given JSON format above and provide example to the command: '{query}' in JSON format."
+        modified_prompt = f"{format_} strictly adhere to the given JSON format above and provide example to the command: '{query}' in JSON format."
 
-        response = model.generate_content([modified_prompt])
-        response = response.text
-        response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
-        parse_json(response, info_parser, query)
+        try:
+            response = genai.GenerativeModel('gemini-pro').generate_content([modified_prompt]).text
+            response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
+            parse_json(response, info_parser, query)
+        except InvalidArgument as e:
+            handle_api_key_error(e)
     elif scenario:
         format_ = """
         json{
@@ -170,12 +178,26 @@ def main(
         }
         """
         modified_prompt = f"{format_} strictly adhere to the given JSON format above and provide Linux commands to accomplish the action described in the scenario: '{query}' in JSON format."
-        response = model.generate_content([modified_prompt])
-        response = response.text
-        response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
-        parse_json(response, scenario_parser, query)
+
+        try:
+            response = genai.GenerativeModel('gemini-pro').generate_content([modified_prompt]).text
+            response = (response.replace("json", "").replace("JSON", "").lstrip("`").rstrip("`"))
+            parse_json(response, scenario_parser, query)
+        except InvalidArgument as e:
+            handle_api_key_error(e)
     else:
         print("Please select one of the two options: -i for command explainer or -s for scenario-based command suggestion.")
+
+def handle_api_key_error(error):
+    """
+    Handle API key errors.
+    """
+    if "API_KEY_INVALID" in str(error):
+        print("InvalidArgument:", error)
+        print("400 API key expired. Please renew the API key.")
+        get_api_key()
+    else:
+        print("An error occurred:", error)
 
 if __name__ == "__main__":
     app()
